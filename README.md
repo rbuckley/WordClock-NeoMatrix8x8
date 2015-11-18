@@ -4,6 +4,8 @@
  
 http://andydoro.com/ 
 
+******Updating to use a 12x12 array of NeoPixels******
+
 A word clock which uses NeoPixel RGB LEDs for a color shifting effect.
 
 For more information, follow this guide: https://learn.adafruit.com/neomatrix-8x8-word-clock/
