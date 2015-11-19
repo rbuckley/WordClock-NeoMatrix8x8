@@ -12,9 +12,10 @@ For more information, follow this guide: https://learn.adafruit.com/neomatrix-8x
 
 Hardware:
  
- - Trinket Pro 5V (should work with other Arduino-compatibles with minor modifications) https://www.adafruit.com/product/2000
- - DS1307 RTC breakout https://www.adafruit.com/products/264
- - NeoPixel NeoMatrix 8x8 https://www.adafruit.com/products/1487
+ - Arduino
+ - DS1307 RTC breakout https://www.adafruit.com/products/264 (maybe)
+ - NeoPixel strip of 150 LEDs 1.25" apart
+ - 3D printed housing for led strips
  - laser cut faceplate & enclosure
  
 Software:
@@ -29,21 +30,23 @@ This code requires the following libraries:
 
 Wiring:
 
- - Solder DS1307 breakout to Trinket Pro, A2 to GND, A3 to PWR, A4 to SDA, A5 to SCL  
-   If you leave off / clip the unused SQW pin on the RTC breakout, the breakout can sit right on top of the Trinket Pro for a compact design! It'll be difficult to reach the Trinket Pro reset button, but you can activate the bootloader by plugging in the USB.
- - Solder NeoMatrix 5V to Trinket 5V, GND to GND, DIN to Trinket Pro pin 8.
+ - TODO
  
 
 grid pattern:
  ```
- A T W E N T Y D
- Q U A R T E R Y
- F I V E H A L F
- D P A S T O R O
- F I V E I G H T
- S I X T H R E E
- T W E L E V E N
- F O U R N I N E
+I	T	A	I	S	B	H	A	L	F	S	T
+B	D	A	Y	Q	U	A	R	T	E	R	N
+T	W	E	N	T	Y	P	F	I	V	E	R
+T	E	T	E	N	F	P	A	S	T	T	O
+T	E	N	S	I	X	Y	Y	O	N	E	B
+N	I	N	E	A	M	M	T	H	R	E	E
+E	I	G	H	T	F	I	V	E	T	W	O
+P	F	O	U	R	L	E	L	E	V	E	N
+S	E	V	E	N	I	T	W	E	L	V	E
+O'	C	L	O	C	K	A	T	I	E	I	N
+T	H	E	K	M	O	R	N	I	N	G	J
+Q	E	V	E	N	I	N	G	.	.	.	.
  ```
  
 Acknowledgements:
