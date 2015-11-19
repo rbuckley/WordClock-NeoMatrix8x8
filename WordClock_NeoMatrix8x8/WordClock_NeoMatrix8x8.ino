@@ -121,7 +121,7 @@ int j;   // an integer for the color shifting effect
 //Adafruit_NeoPixel matrix = Adafruit_NeoPixel(64, NEOPIN, NEO_GRB + NEO_KHZ800);
 
 // configure for 8x8 neopixel matrix
-Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(8, 8, NEOPIN,
+Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(12, 12, NEOPIN,
                             NEO_MATRIX_TOP  + NEO_MATRIX_LEFT +
                             NEO_MATRIX_ROWS + NEO_MATRIX_PROGRESSIVE,
                             NEO_GRB         + NEO_KHZ800);
