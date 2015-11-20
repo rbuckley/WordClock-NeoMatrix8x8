@@ -61,31 +61,9 @@
 // matrix of 12 - 16 bit ints (shorts) for displaying the leds
 uint16_t mask[12];
 
-// define masks for each word. we add them with "bitwise or" to generate a mask for the entire "phrase".
-#ifdef ORIGINAL
-#define MFIVE    mask |= 0xF00000000000        // these are in hexadecimal
-#define MTEN     mask |= 0x5800000000000000
-#define AQUARTER mask |= 0x80FE000000000000
-#define TWENTY   mask |= 0x7E00000000000000
-#define HALF     mask |= 0xF0000000000
-#define PAST     mask |= 0x7800000000
-#define TO       mask |= 0xC00000000
-#define ONE      mask |= 0x43
-#define TWO      mask |= 0xC040
-#define THREE    mask |= 0x1F0000
-#define FOUR     mask |= 0xF0
-#define FIVE     mask |= 0xF0000000
-#define SIX      mask |= 0xE00000
-#define SEVEN    mask |= 0x800F00
-#define EIGHT    mask |= 0x1F000000
-#define NINE     mask |= 0xF
-#define TEN      mask |= 0x1010100
-#define ELEVEN   mask |= 0x3F00
-#define TWELVE   mask |= 0xF600
-#define ANDYDORO mask |= 0x8901008700000000
-#else
 // using masks for each row 16 bit mask which uses the msb as a row index and the
-// next three bytes for the columnn index
+// next three bytes for the columnn index 
+// TODO only using 3 of 4 bytes, maybe put color information in the first byte 
 #define IT       mask[0] |= 0xC00     
 #define IS       mask[0] |= 0x180
 #define HALF     mask[0] |= 0x03C
@@ -118,11 +96,10 @@ uint16_t mask[12];
 #define MTWO     mask[11] |= 0x003  // two minutes past
 #define MTHREE   mask[11] |= 0x007  // three minutes past
 #define MFOUR    mask[11] |= 0x00F  // four minutes past
-#endif
 
 // define pins
 #define NEOPIN 8  // connect to DIN on NeoMatrix 8x8
-//#define RTCGND A2 // use this as DS1307 breakout ground TODO
+//#define RTCGND A2 // use this as DS1307 breakout ground TODO not using a RTC yet
 //#define RTCPWR A3 // use this as DS1307 breakout power  TODO
 
 
@@ -140,8 +117,8 @@ uint16_t mask[12];
 #define SHIFTDELAY 100   // controls color shifting speed
 
 
-RTC_DS1307 RTC; // Establish clock object
-DateTime theTime; // Holds current clock time
+//RTC_DS1307 RTC; // Establish clock object
+//DateTime theTime; // Holds current clock time
 
 int j;   // an integer for the color shifting effect
 
@@ -186,6 +163,7 @@ void setup() {
   digitalWrite(RTCPWR, HIGH); // PWR for RTC
 
   // start clock
+#ifdef USE_RTC
   Wire.begin();  // Begin I2C
   RTC.begin();   // begin clock
 
@@ -201,6 +179,7 @@ void setup() {
     theTime = theTime.unixtime() - 3600; // If we're not in DST right now, just comment this out! If you don't use DST comment this out.
     RTC.adjust(theTime);
   }
+#endif
 
   matrix.begin();
   matrix.setBrightness(DAYBRIGHTNESS);
