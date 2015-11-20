@@ -58,8 +58,8 @@
 
 // define how to write each of the words
 
-// 64-bit "mask" for each pixel in the matrix- is it on or off?
-uint64_t mask;
+// matrix of 12 - 16 bit ints (shorts) for displaying the leds
+uint16_t mask[12];
 
 // define masks for each word. we add them with "bitwise or" to generate a mask for the entire "phrase".
 #ifdef ORIGINAL
@@ -84,35 +84,40 @@ uint64_t mask;
 #define TWELVE   mask |= 0xF600
 #define ANDYDORO mask |= 0x8901008700000000
 #else
-// using masks for each row 16 bit mask which uses the first 
-#define IT       mask |= 0x0C00     
-#define IS       mask |= 0x0180
-#define HALF     mask |= 0x003C
-#define BDAY     mask |= 0x1F00
-#define QUARTER  mask |= 0x10FE
-#define TWENTY   mask |= 0x2FC0
-#define MFIVE    mask |= 0x201E
-#define MTEN     mask |= 0x3380
-#define PAST     mask |= 0x303C
-#define TO       mask |= 0x3003
-#define TEN      mask |=
-#define SIX      mask |=
-#define ONE      mask |=
-#define NINE     mask |=
-#define THREE    mask |=
-#define EIGHT    mask |=
-#define FIVE     mask |=
-#define TWO      mask |=
-#define FOUR     mask |=
-#define ELEVEN   mask |=
-#define SEVEN    mask |=
-#define TWELVE   mask |=
-#define OCLOCK   mask |=
-#define KATIE    mask |=
-#define IN       mask |=
-#define THE      mask |=
-#define MORNING  mask |=
-#define EVENING  mask |=
+// using masks for each row 16 bit mask which uses the msb as a row index and the
+// next three bytes for the columnn index
+#define IT       mask[0] |= 0xC00     
+#define IS       mask[0] |= 0x180
+#define HALF     mask[0] |= 0x03C
+#define BDAY     mask[1] |= 0xF00
+#define QUARTER  mask[1] |= 0x0FE
+#define TWENTY   mask[2] |= 0xFC0
+#define MFIVE    mask[2] |= 0x01E
+#define MTEN     mask[3] |= 0x380
+#define PAST     mask[3] |= 0x03C
+#define TO       mask[3] |= 0x003
+#define TEN      mask[4] |= 0xE00
+#define SIX      mask[4] |= 0x1C0
+#define ONE      mask[4] |= 0x00E
+#define NINE     mask[5] |= 0xF00
+#define THREE    mask[5] |= 0x01F
+#define EIGHT    mask[6] |= 0xF80
+#define FIVE     mask[6] |= 0x078
+#define TWO      mask[6] |= 0x007
+#define FOUR     mask[7] |= 0x780
+#define ELEVEN   mask[7] |= 0x03F
+#define SEVEN    mask[8] |= 0xF80
+#define TWELVE   mask[8] |= 0x03F
+#define OCLOCK   mask[9] |= 0xFC0
+#define KATIE    mask[9] |= 0x07C
+#define IN       mask[9] |= 0x003
+#define THE      mask[10] |= 0xE00
+#define MORNING  mask[10] |= 0X0Fe
+#define EVENING  mask[11] |= 0x7F0
+#define MONE     mask[11] |= 0x001  // one minute past
+#define MTWO     mask[11] |= 0x003  // two minutes past
+#define MTHREE   mask[11] |= 0x007  // three minutes past
+#define MFOUR    mask[11] |= 0x00F  // four minutes past
 #endif
 
 // define pins
