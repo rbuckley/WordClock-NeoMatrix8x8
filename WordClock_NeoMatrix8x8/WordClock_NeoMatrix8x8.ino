@@ -30,14 +30,18 @@
  * 
  * grid pattern
  * 
- *  A T W E N T Y D
- *  Q U A R T E R Y
- *  F I V E H A L F
- *  D P A S T O R O
- *  F I V E I G H T
- *  S I X T H R E E
- *  T W E L E V E N
- *  F O U R N I N E
+   I	T	A	I	S	B	H	A	L	F	S	T
+   B	D	A	Y	Q	U	A	R	T	E	R	N
+   T	W	E	N	T	Y	P	F	I	V	E	R
+   T	E	T	E	N	F	P	A	S	T	T	O
+   T	E	N	S	I	X	Y	Y	O	N	E	B
+   N	I	N	E	A	M	M	T	H	R	E	E
+   E	I	G	H	T	F	I	V	E	T	W	O
+   P	F	O	U	R	L	E	L	E	V	E	N
+   S	E	V	E	N	I	T	W	E	L	V	E
+   O'	C	L	O	C	K	A	T	I	E	I	N
+   T	H	E	K	M	O	R	N	I	N	G	J
+   Q	E	V	E	N	I	N	G	.	.	.	. 
  *  
  *  
  *  Acknowledgements:
@@ -58,6 +62,7 @@
 uint64_t mask;
 
 // define masks for each word. we add them with "bitwise or" to generate a mask for the entire "phrase".
+#ifdef ORIGINAL
 #define MFIVE    mask |= 0xF00000000000        // these are in hexadecimal
 #define MTEN     mask |= 0x5800000000000000
 #define AQUARTER mask |= 0x80FE000000000000
@@ -78,11 +83,42 @@ uint64_t mask;
 #define ELEVEN   mask |= 0x3F00
 #define TWELVE   mask |= 0xF600
 #define ANDYDORO mask |= 0x8901008700000000
+#else
+// using masks for each row 16 bit mask which uses the first 
+#define IT       mask |= 0x0C00     
+#define IS       mask |= 0x0180
+#define HALF     mask |= 0x003C
+#define BDAY     mask |= 0x1F00
+#define QUARTER  mask |= 0x10FE
+#define TWENTY   mask |= 0x2FC0
+#define MFIVE    mask |= 0x201E
+#define MTEN     mask |= 0x3380
+#define PAST     mask |= 0x303C
+#define TO       mask |= 0x3003
+#define TEN      mask |=
+#define SIX      mask |=
+#define ONE      mask |=
+#define NINE     mask |=
+#define THREE    mask |=
+#define EIGHT    mask |=
+#define FIVE     mask |=
+#define TWO      mask |=
+#define FOUR     mask |=
+#define ELEVEN   mask |=
+#define SEVEN    mask |=
+#define TWELVE   mask |=
+#define OCLOCK   mask |=
+#define KATIE    mask |=
+#define IN       mask |=
+#define THE      mask |=
+#define MORNING  mask |=
+#define EVENING  mask |=
+#endif
 
 // define pins
 #define NEOPIN 8  // connect to DIN on NeoMatrix 8x8
-#define RTCGND A2 // use this as DS1307 breakout ground 
-#define RTCPWR A3 // use this as DS1307 breakout power
+//#define RTCGND A2 // use this as DS1307 breakout ground TODO
+//#define RTCPWR A3 // use this as DS1307 breakout power  TODO
 
 
 // brightness based on time of day- could try warmer colors at night?
